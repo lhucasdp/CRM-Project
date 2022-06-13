@@ -31,12 +31,12 @@
                 @foreach($employees as $key => $employee)
                     <tr>
                         <td>{{($employees->CurrentPage()-1)*10+$key+1}}</td>
-                        <td>{{$employee->company->name}}</td>
-                        <td>{{$employee->first_name}}</td>
+                        <td class="text-break">{{$employee->company->name}}</td>
+                        <td class="text-break">{{$employee->first_name}}</td>
 
-                        <td>{{$employee->last_name}}</td>
-                        <td>{{$employee->email}}</td>
-                        <td>{{$employee->phone}}</td>
+                        <td class="text-break">{{$employee->last_name}}</td>
+                        <td class="text-break">{{$employee->email}}</td>
+                        <td class="text-break">{{$employee->phone}}</td>
 
                         <td>
                             <div class="btn-group">

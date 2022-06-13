@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="card-body  card-body-color">
-                <table class="table table-striped">
+                <table class="table table-striped ">
                     <head>
                         <tr>
                             <th>#</th>
@@ -34,15 +34,15 @@
 
                             <td> <img src="{{asset( 'storage/logo/'.$company->logo )}}" alt="{{$company->logo}}" style="width: 70px"></td>
 
-                            <td>{{$company->name}}</td>
+                            <td class="text-break">{{$company->name}}</td>
 
-                            <td>{{$company->email}}</td>
-                            <td>{{$company->website}}</td>
+                            <td class="text-break">{{$company->email}}</td>
+                            <td class="text-break">{{$company->website}}</td>
 
                             <td>
                                 <div class="btn-group">
                                     <a href="{{route("companies.edit", ['company'=> $company->id])}}" class="btn btn-sm btn-primary">EDIT</a>
-                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#{{$company->name.$company->id}}">DELETE</button>
+                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#{{$company->name.$company->id}}">REMOVE</button>
                                 </div>
                             </td>
 

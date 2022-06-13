@@ -44,31 +44,18 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-//        $data = $request->all();
-//        $user = auth()->user();
-
-//        dd($request->file('logo')->store('logo'));
-
-
-
+        $data = $request->all();
         if ($request -> hasFile('logo')){
 
             $file = $request->file('logo');
-//            dd($file);
             $name = $file->getClientOriginalName();
-//            dd($name);
             $upload=$file->storeAs('public/logo',$name);
-//            dd($upload);
             if(!$upload)
                 return redirect()->back()->with('error','Falha ao fazer upload')->withInput();
+            $data['logo']=$name;
         }
-//            dd($request['logo']);
-            Company::Create([
-            "name" => $request['name'],
-            "email" => $request['email'],
-            "website" => $request['website'],
-            "logo" => $name
-        ]);
+
+        Company::Create($data);
 
         return redirect()->route('companies.index');
     }
