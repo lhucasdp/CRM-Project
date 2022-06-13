@@ -7,55 +7,48 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+# Preparação de ambiente
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* Primeiramente baixe e instale o <b>Docker</b> em sua máquina com o link a seguir https://www.docker.com/get-started/ .
+* A seguir clone meu repositório com o comando ```git clone https://github.com/lhucasdp/CRM-Project.git``` utilizando o GitBash.
+* Em seguida acesse a pasta do seu projeto, via terminal, e clone o laradock com o comando ```git clone https://github.com/laradock/laradock.git```
+## Acesse o <b>Laradock</b>
+* Faça uma cópia do arquivo ```.env.example``` e renomeie para ```.env```
+* Abra o arquivo renomeado e renomeie os seguintes trechos de código (utilize ```Ctrl + F``` pra pesquisar)
+* ```PHP_VERSION=7.4```
+* ```MYSQL_VERSION=latest```
+* ```MYSQL_DATABASE=default```
+* ```MYSQL_USER=default```
+* ```MYSQL_PASSWORD=secret```
+* ```MYSQL_PORT=3306```
+* ```MYSQL_ROOT_PASSWORD=root```
+* ```MYSQL_ENTRYPOINT_INITDB=./mysql/docker-entrypoint-initdb.d```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Faça o mesmo com a pasta ```.env``` dentro do projeto.
+* ```DB_CONNECTION=mysql```
+* ```DB_HOST=mysql```
+* ```DB_PORT=3306```
+* ```DB_DATABASE=projeto_crm```
+* ```DB_USERNAME=root```
+* ```DB_PASSWORD=root```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Abra novamente o prompt dentro da pasta ```laradock``` e execute os seguintes comandos.
+* ```docker-compose up -d nginx mysql phpmyadmin``` - Criará e iniciará suas imagens no docker.
+* ```docker-compose exec --user=laradock workspace bash``` - Gerar outra linha de comando <b>Bash</b>.
+* ```composer install``` - Instalar o composer.
+* ```php artisan key:generate``` - Gera a chave
+* ```php artisan storage:link``` - Permite o BD abrir imagens.
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Configuração do Banco de Dados
+* Pressione ```Ctrl + D``` e execute o comando ```docker ps``` - Verificar as portas do projeto.
+* Acesse seu <b>localhost</b> observando a porta com o comando anterior (```:8081```)
+* Abra seu navegador e digite na url ```localhost: #porta#```
+* ![image](https://user-images.githubusercontent.com/90513511/173357899-5f7b07d6-7114-47f3-b78b-a42c64fca0f6.png)
+* Crie um banco com o mesmo nome que está definido anteriormente na pasta ```.env``` em ```DB_DATABASE=projeto_crm```
+* Em seguida execute os seguintes comandos
+* ```docker-compose exec --user=laradock workspace bash```
+* ```php artisan migrate``` - Gerar migrações no banco
+* ```php artisan db:seed``` - Gerar os dados do banco
+* Acesse o projeto inserindo na url ```localhost: #porta do gninx#```
+* Login: ```admin@admin.com```
+* Senha: ```admin```
