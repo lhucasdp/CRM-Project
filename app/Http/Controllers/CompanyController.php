@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function auth;
 use function redirect;
@@ -42,7 +41,7 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
         $data = $request->all();
         if ($request -> hasFile('logo')){
@@ -92,7 +91,7 @@ class CompanyController extends Controller
      * @param $company
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(CompanyRequest $request, $id)
     {
         $data = $request->all();
 

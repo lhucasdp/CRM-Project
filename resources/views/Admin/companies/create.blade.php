@@ -12,7 +12,7 @@
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <div class="form-group">
                     <label>Company Name</label>
-                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror "  required maxlength="60"
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror "   maxlength="60"
                            value="{{old('name')}}">
 
                     @error('name')
@@ -24,7 +24,7 @@
 
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" required maxlength="60"
+                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"  maxlength="60"
                            value="{{old('email')}}">
 
                     @error('email')
@@ -36,7 +36,7 @@
 
                 <div class="form-group">
                     <label>Company Logo</label>
-                    <input type="file" name="logo" class="form-control @error('logo') is-invalid @enderror" required >
+                    <input type="file" name="logo" class="form-control @error('logo') is-invalid @enderror"  >
                     @error('logo')
                     <div class="invalid-feedback">
                         {{$message}}

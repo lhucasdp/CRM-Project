@@ -3,9 +3,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmployeeRequest;
 use App\Models\Company;
 use App\Models\Employee;
-use Illuminate\Http\Request;
+
 
 class EmployeeController extends Controller
 {
@@ -38,7 +39,7 @@ class EmployeeController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
 
         Employee::Create([
@@ -85,7 +86,7 @@ class EmployeeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $employee)
+    public function update(EmployeeRequest $request, $employee)
     {
 
         $data = $request->all();

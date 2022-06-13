@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <label>First Name</label>
                     <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror"
-                           maxlength="60" required
+                           maxlength="60"
                            value="{{old('first_name')}}">
 
                     @error('first_name')
@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <label>Last Name</label>
                     <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror"
-                           required maxlength="60"
+                            maxlength="60"
                            value="{{old('last_name')}}">
 
                     @error('last_name')
@@ -39,7 +39,7 @@
 
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" required
+                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                            maxlength="60"
                            value="{{old('email')}}">
 
@@ -53,7 +53,7 @@
                 <div class="form-group">
                     <label>Phone</label>
                     <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror"
-                           required maxlength="15"
+                            maxlength="15"
                            value="{{old('phone')}}">
 
                     @error('phone')
@@ -65,7 +65,7 @@
 
                 <div class="form-group">
                     <label>Company</label>
-                    <select name="company_id" id="" class="form-select" required>
+                    <select name="company_id" id="" class="form-select" >
                         <option selected value="">Select Company</option>
                         @foreach($companies as $company)
                             @php

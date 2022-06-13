@@ -16,6 +16,7 @@
                 <div class="form-group">
                     <label>First Name</label>
                     <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror"
+                            maxlength="60"
                            value="{{$employee->first_name}}">
 
                     @error('first_name')
@@ -28,6 +29,7 @@
                 <div class="form-group">
                     <label>Last Name</label>
                     <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror"
+                            maxlength="60"
                            value="{{$employee->last_name}}">
 
                     @error('last_name')
@@ -40,6 +42,7 @@
                 <div class="form-group">
                     <label>Email</label>
                     <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                           maxlength="60"
                            value="{{$employee->email}}">
 
                     @error('email')
@@ -51,7 +54,8 @@
 
                 <div class="form-group">
                     <label>Phone</label>
-                    <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
+                    <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror"
+                           maxlength="15"
                            value="{{$employee->phone}}">
 
                     @error('phone')
@@ -80,5 +84,32 @@
         </div>
     </div>
 
+    <script>
+        function mascara(o, f) {
+            v_obj = o
+            v_fun = f
+            setTimeout("execmascara()", 1)
+        }
 
+        function execmascara() {
+            v_obj.value = v_fun(v_obj.value)
+        }
+
+        function mtel(v) {
+            v = v.replace(/\D/g, ""); //Remove tudo o que não é dígito
+            v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+            v = v.replace(/(\d)(\d{4})$/, "$1-$2"); //Coloca hífen entre o quarto e o quinto dígitos
+            return v;
+        }
+
+        function id(el) {
+            return document.getElementById(el);
+        }
+
+        window.onload = function () {
+            id('phone').onkeyup = function () {
+                mascara(this, mtel);
+            }
+        }
+    </script>
 @endsection
